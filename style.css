@@ -9,9 +9,9 @@
 #main {
     background: linear-gradient(lightskyblue, steelblue)
 }
-/*.hide {*/
-/*    display: none;*/
-/*}*/
+.hide {
+    display: none;
+}
 h1 {
     text-align: center;
     font-size: 3em;
