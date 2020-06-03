@@ -65,10 +65,10 @@ h1 {
 #head {
     border: 4px solid black;
     border-radius: 50%;
-    width: 40px;
-    height: 40px;
+    width: 45px;
+    height: 45px;
     position: relative;
-    margin-left: 47px;
+    margin-left: 45px;
     bottom: 75px;
 }
 #body {
@@ -110,36 +110,52 @@ h1 {
     height: 50px;
     transform: rotate(-35deg);
 }
-#left-eye {
-    border: 3px solid black;
-    margin-left: 55px;
-    position: relative;
-    bottom: 440px;
-    border-radius: 10px;
+
+.dot {
+    height: 7px;
+    width: 7px;
+    background-color: #000;
+    border-radius: 50%;
+    display: inline-block;
 }
 #right-eye {
-    border: 3px solid black;
-    margin-left: 73px;
     position: relative;
-    bottom: 446px;
-    border-radius: 10px;
+    left: 14px;
+    bottom: 3px;
 }
-#nose {
-    border: 3px solid black;
-    margin-left: 64px;
+
+#left-eye {
     position: relative;
-    bottom: 446px;
-    border-radius: 15px;
-    height: 4px;
+    left: 4px;
+    bottom: 3px;
 }
+.nose {
+    height: 10px;
+    width: 5px;
+    background-color: #000;
+    border-radius: 50%;
+    position: relative;
+    display: inline-block;
+    right: 6px;
+    top: 4px;
+}
+
+/*.nose {*/
+/*    border: 3px solid black;*/
+/*    margin-left: 41px;*/
+/*    position: relative;*/
+/*    border-radius: 15px;*/
+/*    bottom: 7px;*/
+/*    right: 29px;*/
+/*}*/
 #mouth {
     border: 3px solid black;
     margin-left: 62px;
     position: relative;
-    bottom: 444px;
     border-radius: 7px;
     height: 8px;
     width: 11px;
+    right: 49px;
 }
 #word {
     margin-top: 110px;

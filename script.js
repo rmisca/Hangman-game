@@ -1,11 +1,12 @@
 const letters = "abcdefghijklmnopqrstuvwxyz".toUpperCase().split("");
-const randomWord = "rom".toUpperCase();
+const randomWord = "valeriana".toUpperCase();
 let lettersPressed = [];
 
-let bodyParts=["head", "body", "left-hand", "right-hand", "left-foot", "right-foot", "left-eye", "right-eye", "nose", "mouth"];
+let bodyParts=["head", "body", "left-hand", "right-hand", "left-foot", "right-foot"];
 
-let bodyPartsForReset=["head", "body", "left-hand", "right-hand", "left-foot", "right-foot", "left-eye", "right-eye", "nose", "mouth"];
+let bodyPartsForReset=["head", "body", "left-hand", "right-hand", "left-foot", "right-foot"];
 
+const blink = setInterval(blinkEyes, 700);
 
 const wordContainer = document.getElementById("word-container");
 wordContainer.innerHTML = hideWordLetters();
@@ -142,6 +143,13 @@ function toggleAllOptions(isDisabled) {
     }
 }
 
+function blinkEyes() {
+    let rightEye = document.getElementById("right-eye");
+    let leftEye = document.getElementById("left-eye");
+    console.log(rightEye.offsetHeight);
+    rightEye.style.height = rightEye.offsetHeight == 7 ? "3px" : "7px";
+    leftEye.style.height = leftEye.offsetHeight == 7 ? "3px" : "7px";
+}
 initGame();
 
 
