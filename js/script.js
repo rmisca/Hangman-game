@@ -1,5 +1,5 @@
 const letters = "abcdefghijklmnopqrstuvwxyz".toUpperCase().split("");
-const randomWord = "valeriana".toUpperCase();
+let randomWord = generateRandomWord();
 let lettersPressed = [];
 
 let bodyParts=["head", "body", "left-hand", "right-hand", "left-foot", "right-foot"];
@@ -7,7 +7,10 @@ let bodyParts=["head", "body", "left-hand", "right-hand", "left-foot", "right-fo
 let bodyPartsForReset=["head", "body", "left-hand", "right-hand", "left-foot", "right-foot"];
 
 const blink = setInterval(blinkEyes, 700);
-
+function generateRandomWord() {
+    const randomWords  = ["rom", "inghetata", "dezastru", "relaxare", "generator", "marinimie", "import", "cascat", "noptiera", "exasperare", "lent", "platforma", "prajitura", "dezvoltator", "disperare", "frigider", "ceasornicar", "soare", "sistem", "nepot"];
+    return randomWords[Math.floor(Math.random()*randomWords.length)].toUpperCase();
+}
 const wordContainer = document.getElementById("word-container");
 wordContainer.innerHTML = hideWordLetters();
 resetButton();
@@ -118,11 +121,13 @@ function resetButton() {
 }
 
 function resetPage() {
+    randomWord = generateRandomWord();
     wordContainer.innerHTML = hideWordLetters();
     for (let i = 0; i < bodyPartsForReset.length ; i++) {
         const bodyPartsForResetVar = document.getElementById(bodyPartsForReset[i]);
         bodyPartsForResetVar.classList.add("hide");
     }
+    lettersPressed = [];
     bodyParts = JSON.parse(JSON.stringify(bodyPartsForReset));
     toggleMessage(false, "alert-success");
     toggleMessage(false, "alert-danger");
@@ -146,11 +151,7 @@ function toggleAllOptions(isDisabled) {
 function blinkEyes() {
     let rightEye = document.getElementById("right-eye");
     let leftEye = document.getElementById("left-eye");
-    console.log(rightEye.offsetHeight);
     rightEye.style.height = rightEye.offsetHeight == 7 ? "3px" : "7px";
     leftEye.style.height = leftEye.offsetHeight == 7 ? "3px" : "7px";
 }
 initGame();
-
-
-
