@@ -1,2 +1,1 @@
-loadLoginPage();
-
+checkIfUserIsLoggedIn();

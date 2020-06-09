@@ -7,7 +7,6 @@ function  initHangman() {
 
     let bodyPartsForReset=["head", "body", "left-hand", "right-hand", "left-foot", "right-foot"];
 
-    const blink = setInterval(blinkEyes, 700);
 
     function generateRandomWord() {
         const randomWords  = ["rom", "inghetata", "dezastru", "relaxare", "generator", "marinimie", "import", "cascat", "noptiera", "exasperare", "lent", "platforma", "prajitura", "dezvoltator", "disperare", "frigider", "ceasornicar", "soare", "sistem", "nepot"];
@@ -115,8 +114,10 @@ function  initHangman() {
             // showSuccess();
             toggleMessage(true, "alert-success", "Ai castigat");
             toggleAllOptions(true);
+            increaseWiningGames();
         }
     }
+
 
     function resetButton() {
         const buttonReset = document.getElementById("btn-reset-game");
@@ -149,17 +150,85 @@ function  initHangman() {
             }
         }
     }
-
-    function blinkEyes() {
-        let rightEye = document.getElementById("right-eye");
-        let leftEye = document.getElementById("left-eye");
-        rightEye.style.height = rightEye.offsetHeight == 7 ? "3px" : "7px";
-        leftEye.style.height = leftEye.offsetHeight == 7 ? "3px" : "7px";
+    function increaseWiningGames() {
+        // localStorage.usersStatistics = {
+        //     "test": {
+        //         gamesWon: 0,
+        //             gamesLost: 0
+        // },
+        //     "test2": {
+        //         gamesWon: 0,
+        //         gamesLost: 0
+        //     },
+        // }
+        // const loggedInUser; // get loggedInUser from localStorage
+        // const userStatistics = localStorage.getItem("userStatistics") || {};
+        // const gamesWon = userStatistics[loggedInUser.username] ? userStatistics[loggedInUser.username].gamesWon : 0;
     }
     initGame();
 }
+
 
 function alertMessage() {
     const getMessage = document.getElementById("message");
     getMessage.innerHTML = "Buna " +  JSON.parse(localStorage.loggedUser).username;
 }
+
+function generate_table() {
+    // get the reference for the body
+    const body = document.getElementsByTagName("body")[0];
+
+    // creates a <table> element and a <tbody> element
+    const tbl = document.createElement("table");
+    tbl.className += "table-info table-borderd table-score";
+    const tblHead = document.createElement("thead");
+    const trh = document.createElement("tr");
+    const tblBody = document.createElement("tbody");
+
+
+    for (let l = 0; l < 2; l++) {
+        const th = document.createElement("th");
+        const text = l === 0 ? "Jocuri castigate" : "Jocuri pierdute";
+        const cellText = document.createTextNode(text);
+        th.appendChild(cellText);
+        trh.appendChild(th);
+    }
+    tblHead.appendChild(trh);
+
+    // creating all cells
+    for (let i = 0; i < 1; i++) {
+        // creates a table row
+        const row = document.createElement("tr");
+
+        for (let j = 0; j < 2; j++) {
+            // Create a <td> element and a text node, make the text
+            // node the contents of the <td>, and put the <td> at
+            // the end of the table row
+            const cell = document.createElement("td");
+            // const numberGame =
+            const cellText = document.createTextNode(" hahahahah");
+            cell.appendChild(cellText);
+            row.appendChild(cell);
+        }
+
+        // add the row to the end of the table body
+        tblBody.appendChild(row);
+    }
+    tbl.appendChild(tblHead);
+    // put the <tbody> in the <table>
+    tbl.appendChild(tblBody);
+    // appends <table> into <body>
+    body.appendChild(tbl);
+    // sets the border attribute of tbl to 2;
+    tbl.setAttribute("border", "2");
+}
+generate_table();
+
+function gameScore () {
+
+
+
+}
+
+
+

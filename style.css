@@ -1,17 +1,17 @@
-/*hr {*/
-/*    display: block;*/
-/*    height: 1px;*/
-/*    border: 0;*/
-/*    border-top: 3px solid #000;*/
-/*    margin: 1em 0;*/
-/*    padding: 0;*/
-/*}*/
-#main {
-    background: linear-gradient(lightskyblue, steelblue);
-    margin-bottom: 10px;
+html {
+    height: 100%;
 }
+body {
+    height: 100%;
+    margin: 0;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background: linear-gradient(lightskyblue, steelblue);
+
+}
+
 .hide {
-    display: none;
+    display: none !important;
 }
 h1 {
     text-align: center;
@@ -174,11 +174,11 @@ h1 {
  * PSD by Orman Clark: https://goo.gl/D8zmk
  */
 
-body {
-    font: 13px/20px "Lucida Grande", Tahoma, Verdana, sans-serif;
-    color: #404040;
-    background: #0ca3d2;
-}
+/*body {*/
+/*    font: 13px/20px "Lucida Grande", Tahoma, Verdana, sans-serif;*/
+/*    color: #404040;*/
+/*    background: #0ca3d2;*/
+/*}*/
 
 .login {
     position: relative;
@@ -345,4 +345,12 @@ input[type=submit]:active {
 }
 #message {
     text-align: center;
+}
+.button-drop {
+    float: right;
+    margin: 5px 40px;
+}
+
+.table-score {
+    margin: 15px 50px;
 }
