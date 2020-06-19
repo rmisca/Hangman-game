@@ -9,7 +9,8 @@ function  initHangman() {
 
 
     function generateRandomWord() {
-        const randomWords  = ["rom", "inghetata", "dezastru", "relaxare", "generator", "marinimie", "import", "cascat", "noptiera", "exasperare", "lent", "platforma", "prajitura", "dezvoltator", "disperare", "frigider", "ceasornicar", "soare", "sistem", "nepot"];
+        // const randomWords  = ["rom", "inghetata", "dezastru", "relaxare", "generator", "marinimie", "import", "cascat", "noptiera", "exasperare", "lent", "platforma", "prajitura", "dezvoltator", "disperare", "frigider", "ceasornicar", "soare", "sistem", "nepot"];
+        const randomWords = ["rom", "foc"];
         return randomWords[Math.floor(Math.random()*randomWords.length)].toUpperCase();
     }
 
@@ -84,6 +85,7 @@ function  initHangman() {
             // showFailed();
             toggleMessage(true, "alert-danger", "Ai pierdut!");
             toggleAllOptions(true);
+            increaseLosingGames();
         }
         elPressed.setAttribute("disabled", true);
     }
@@ -150,21 +152,47 @@ function  initHangman() {
             }
         }
     }
+
     function increaseWiningGames() {
-        // localStorage.usersStatistics = {
-        //     "test": {
-        //         gamesWon: 0,
-        //             gamesLost: 0
-        // },
-        //     "test2": {
-        //         gamesWon: 0,
-        //         gamesLost: 0
-        //     },
-        // }
-        // const loggedInUser; // get loggedInUser from localStorage
-        // const userStatistics = localStorage.getItem("userStatistics") || {};
-        // const gamesWon = userStatistics[loggedInUser.username] ? userStatistics[loggedInUser.username].gamesWon : 0;
+        const loggedInUser = JSON.parse(localStorage.loggedUser);
+        const currentUsersStatistics = localStorage.currentUsersStatistics
+            ? JSON.parse(localStorage.currentUsersStatistics)
+            : {};
+        const statisticsForCurrentUser = currentUsersStatistics[loggedInUser.username];
+        if (statisticsForCurrentUser) {
+            const gamesWon = statisticsForCurrentUser.gamesWon ? statisticsForCurrentUser.gamesWon + 1 : 1;
+            currentUsersStatistics[loggedInUser.username].gamesWon = gamesWon;
+            currentUsersStatistics[loggedInUser.username].gamesLost = currentUsersStatistics[loggedInUser.username].gamesLost || 0;
+            localStorage.currentUsersStatistics = JSON.stringify(currentUsersStatistics);
+        } else {
+            currentUsersStatistics[loggedInUser.username] = {
+                gamesWon: 1,
+            }
+            currentUsersStatistics[loggedInUser.username].gamesLost = currentUsersStatistics[loggedInUser.username].gamesLost || 0;
+            localStorage.setItem("currentUsersStatistics", JSON.stringify(currentUsersStatistics));
+        }
     }
+
+    function increaseLosingGames() {
+        const loggedInUser = JSON.parse(localStorage.loggedUser);
+        const currentUsersStatistics = localStorage.currentUsersStatistics
+            ? JSON.parse(localStorage.currentUsersStatistics)
+            : {};
+        const statisticsForCurrentUser = currentUsersStatistics[loggedInUser.username];
+        if (statisticsForCurrentUser) {
+            const gamesLost = statisticsForCurrentUser.gamesLost ? statisticsForCurrentUser.gamesLost + 1 : 1;
+            currentUsersStatistics[loggedInUser.username].gamesLost = gamesLost;
+            currentUsersStatistics[loggedInUser.username].gamesWon = currentUsersStatistics[loggedInUser.username].gamesWon || 0;
+            localStorage.currentUsersStatistics = JSON.stringify(currentUsersStatistics);
+        } else {
+            currentUsersStatistics[loggedInUser.username] = {
+                gamesLost: 1,
+            }
+            currentUsersStatistics[loggedInUser.username].gamesWon = currentUsersStatistics[loggedInUser.username].gamesWon || 0;
+            localStorage.setItem("currentUsersStatistics", JSON.stringify(currentUsersStatistics));
+        }
+    }
+
     initGame();
 }
 

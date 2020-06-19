@@ -159,6 +159,7 @@ h1 {
 }
 #word {
     margin-top: 110px;
+    font-size: large;
 }
 
 
@@ -345,6 +346,8 @@ input[type=submit]:active {
 }
 #message {
     text-align: center;
+    border-radius: 30px;
+    padding: 10px 20px;
 }
 .button-drop {
     float: right;
@@ -354,3 +357,8 @@ input[type=submit]:active {
 .table-score {
     margin: 15px 50px;
 }
+
+/*#btn-reset-game {*/
+/*    padding: 15px 40px;*/
+/*    font-size: 20px;*/
+/*}*/
