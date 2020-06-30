@@ -51,6 +51,7 @@ function  initHangman() {
             temp.appendChild(btnLetter);
             btnLetter.addEventListener("click", letterClicked);
         }
+        generateTable();
     }
 
 
@@ -171,6 +172,8 @@ function  initHangman() {
             currentUsersStatistics[loggedInUser.username].gamesLost = currentUsersStatistics[loggedInUser.username].gamesLost || 0;
             localStorage.setItem("currentUsersStatistics", JSON.stringify(currentUsersStatistics));
         }
+        generateTable();
+        generalTable()
     }
 
     function increaseLosingGames() {
@@ -191,6 +194,121 @@ function  initHangman() {
             currentUsersStatistics[loggedInUser.username].gamesWon = currentUsersStatistics[loggedInUser.username].gamesWon || 0;
             localStorage.setItem("currentUsersStatistics", JSON.stringify(currentUsersStatistics));
         }
+        generateTable();
+        generalTable()
+    }
+
+    function showLocalStorageResults() {
+        const loggedInUserResult = JSON.parse(localStorage.loggedUser);
+        const userStatistics = JSON.parse(localStorage.currentUsersStatistics)[loggedInUserResult.username];
+        const showLocalStorage = userStatistics
+            ? userStatistics
+            : {
+                gamesWon: 0,
+                gamesLost: 0
+            };
+        return showLocalStorage;
+    }
+
+    function generateTable() {
+        // get the reference for the body
+        const tableWrapper = document.getElementById("table-wrapper");
+
+        // creates a <table> element and a <tbody> element
+        const tbl = document.createElement("table");
+        tbl.className += "table-info table-borderd table-score";
+        const tblHead = document.createElement("thead");
+        tblHead.className += "table-dark";
+        const trh = document.createElement("tr");
+        const tblBody = document.createElement("tbody");
+
+
+        for (let l = 0; l < 2; l++) {
+            const th = document.createElement("th");
+            const text = l === 0 ? "Jocuri castigate" : "Jocuri pierdute";
+            const cellText = document.createTextNode(text);
+            th.appendChild(cellText);
+            trh.appendChild(th);
+        }
+        tblHead.appendChild(trh);
+
+        // creating all cells
+        for (let i = 0; i < 1; i++) {
+            // creates a table row
+            const row = document.createElement("tr");
+
+            const statisticsForCurrentUser = showLocalStorageResults();
+            const statisticKeys = Object.keys(statisticsForCurrentUser);
+            for (let j = 0; j < statisticKeys.length; j++) {
+                // Create a <td> element and a text node, make the text
+                // node the contents of the <td>, and put the <td> at
+                // the end of the table row
+                const cell = document.createElement("td");
+                // const numberGame =
+                const cellText = document.createTextNode(statisticsForCurrentUser[statisticKeys[j]]);
+                cell.appendChild(cellText);
+                row.appendChild(cell);
+            }
+            // add the row to the end of the table body
+            tblBody.appendChild(row);
+        }
+        tbl.appendChild(tblHead);
+        // put the <tbody> in the <table>
+        tbl.appendChild(tblBody);
+        // sets the border attribute of tbl to 2;
+        tbl.setAttribute("border", "2");
+        // appends <table> into <body>
+        tableWrapper.innerHTML = tbl.outerHTML;
+    }
+
+    function generalTable() {
+        const tableRaking = document.getElementById("table-raking");
+        const tbl = document.createElement("table");
+        tbl.className += "table-info table-borderd table-score";
+        const tblHead = document.createElement("thead");
+        tblHead.className += "table-dark";
+        const trh = document.createElement("tr");
+        const tblBody = document.createElement("tbody");
+        const tableHeaders = ["Pozitia", "Nume jucator", "Jocuri castigate", "Jocuri pierdute"];
+
+        for (let m = 0; m < tableHeaders.length; m++) {
+            const th = document.createElement("th");
+            const text = document.createTextNode(tableHeaders[m]);
+            th.appendChild(text);
+            trh.appendChild(th);
+        }
+        tblHead.appendChild(trh);
+
+        const usersStatistics = JSON.parse(localStorage.currentUsersStatistics);
+        const usersStatisticsKeys = Object.keys(usersStatistics);
+        for (let n = 0; n < usersStatisticsKeys.length; n++) {
+            const row = document.createElement("tr");
+
+            //     // Create a <td> element and a text node, make the text
+            //     // node the contents of the <td>, and put the <td> at
+            //     // the end of the table row
+            const rowData = [n + 1, usersStatisticsKeys[n], usersStatistics[usersStatisticsKeys[n]].gamesWon, usersStatistics[usersStatisticsKeys[n]].gamesLost];
+            for (let o = 0; o < rowData.length; o++) {
+                createCell(rowData[o], row);
+            }
+            // add the row to the end of the table body
+            tblBody.appendChild(row);
+        }
+        tbl.appendChild(tblHead);
+        // put the <tbody> in the <table>
+        tbl.appendChild(tblBody);
+        // sets the border attribute of tbl to 2;
+        tbl.setAttribute("border", "2");
+        // appends <table> into <body>
+        tableRaking.innerHTML = tbl.outerHTML;
+
+    }
+
+    function createCell(textValue, row) {
+        const cell = document.createElement("td");
+        const cellText = document.createTextNode(textValue);
+        cell.appendChild(cellText);
+        row.appendChild(cell);
     }
 
     initGame();
@@ -202,61 +320,8 @@ function alertMessage() {
     getMessage.innerHTML = "Buna " +  JSON.parse(localStorage.loggedUser).username;
 }
 
-function generate_table() {
-    // get the reference for the body
-    const body = document.getElementsByTagName("body")[0];
-
-    // creates a <table> element and a <tbody> element
-    const tbl = document.createElement("table");
-    tbl.className += "table-info table-borderd table-score";
-    const tblHead = document.createElement("thead");
-    const trh = document.createElement("tr");
-    const tblBody = document.createElement("tbody");
 
 
-    for (let l = 0; l < 2; l++) {
-        const th = document.createElement("th");
-        const text = l === 0 ? "Jocuri castigate" : "Jocuri pierdute";
-        const cellText = document.createTextNode(text);
-        th.appendChild(cellText);
-        trh.appendChild(th);
-    }
-    tblHead.appendChild(trh);
-
-    // creating all cells
-    for (let i = 0; i < 1; i++) {
-        // creates a table row
-        const row = document.createElement("tr");
-
-        for (let j = 0; j < 2; j++) {
-            // Create a <td> element and a text node, make the text
-            // node the contents of the <td>, and put the <td> at
-            // the end of the table row
-            const cell = document.createElement("td");
-            // const numberGame =
-            const cellText = document.createTextNode(" hahahahah");
-            cell.appendChild(cellText);
-            row.appendChild(cell);
-        }
-
-        // add the row to the end of the table body
-        tblBody.appendChild(row);
-    }
-    tbl.appendChild(tblHead);
-    // put the <tbody> in the <table>
-    tbl.appendChild(tblBody);
-    // appends <table> into <body>
-    body.appendChild(tbl);
-    // sets the border attribute of tbl to 2;
-    tbl.setAttribute("border", "2");
-}
-generate_table();
-
-function gameScore () {
-
-
-
-}
 
 
 
