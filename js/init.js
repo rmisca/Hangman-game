@@ -9,8 +9,7 @@ function  initHangman() {
 
 
     function generateRandomWord() {
-        // const randomWords  = ["rom", "inghetata", "dezastru", "relaxare", "generator", "marinimie", "import", "cascat", "noptiera", "exasperare", "lent", "platforma", "prajitura", "dezvoltator", "disperare", "frigider", "ceasornicar", "soare", "sistem", "nepot"];
-        const randomWords = ["rom", "foc"];
+        const randomWords  = ["rom", "inghetata", "dezastru", "relaxare", "generator", "marinimie", "import", "cascat", "noptiera", "exasperare", "lent", "platforma", "prajitura", "dezvoltator", "disperare", "frigider", "ceasornicar", "soare", "sistem", "nepot"];
         return randomWords[Math.floor(Math.random()*randomWords.length)].toUpperCase();
     }
 
@@ -52,6 +51,7 @@ function  initHangman() {
             btnLetter.addEventListener("click", letterClicked);
         }
         generateTable();
+        generalTable();
     }
 
 
@@ -209,6 +209,20 @@ function  initHangman() {
             };
         return showLocalStorage;
     }
+    sortObjectByProperty({}, "gamesWon");
+    function sortObjectByProperty(data, property) {
+        let sorted = {};
+
+        Object
+            .keys(data).sort( (a, b) => {
+            return data[b][property] - data[a][property];
+        })
+            .forEach(key => {
+                sorted[key] = data[key];
+            });
+        return sorted;
+
+    }
 
     function generateTable() {
         // get the reference for the body
@@ -280,7 +294,8 @@ function  initHangman() {
         tblHead.appendChild(trh);
 
         const usersStatistics = JSON.parse(localStorage.currentUsersStatistics);
-        const usersStatisticsKeys = Object.keys(usersStatistics);
+        const sortedStatistics = sortObjectByProperty(usersStatistics, "gamesWon");
+        const usersStatisticsKeys = Object.keys(sortedStatistics);
         for (let n = 0; n < usersStatisticsKeys.length; n++) {
             const row = document.createElement("tr");
 
