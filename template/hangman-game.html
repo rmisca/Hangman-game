@@ -1,0 +1,96 @@
+<div id="hangman-game">
+
+    <div class="row">
+        <div class="col-8 offset-2" >
+            <h1>Spanzuratoarea</h1>
+        </div>
+    <div class="col-2">
+        <div class="btn-group button-drop">
+            <button id="message" type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Action
+            </button>
+            <div class="dropdown-menu">
+                <div class="dropdown-divider"></div>
+                <a id="btn-logout" class="dropdown-item" href="#"><i class="fa fa-sign-out"></i> Logout</a>
+            </div>
+        </div>
+
+    </div>
+    </div>
+
+    <div class="row">
+        <div class="col-4">
+            <div id="vertical-line">
+                <div id="horizontal-line-inline">
+                    <div id="vertical-line-inline"></div>
+                    <div id="head" class="hide" >
+                        <span id="left-eye" class="dot"></span>
+                        <span id="right-eye" class="dot"></span>
+                        <span class="nose"></span>
+                        <div id="mouth"></div>
+                    </div>
+                    <div id="body" class="hide"></div>
+                    <div id="left-hand" class="hide" ></div>
+                    <div id="right-hand" class="hide"></div>
+                    <div id="left-foot" class="hide"></div>
+                    <div id="right-foot" class="hide"></div>
+
+                </div>
+                <div id="horizontal-line"></div>
+            </div>
+        </div>
+        <div class="col-5">
+            <div id="word">
+                <span class="word-text"> Cuvantul este: </span>
+                <span id="word-container"></span>
+            </div>
+        </div>
+        <div class="col-3">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Clasament</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Jocuri</a>
+                </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                    <div id="table-raking"></div>
+                </div>
+                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                    <div id="table-wrapper"></div>
+                </div>
+                <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row ">
+        <div class="col-4 offset-4">
+            <div id="alert-message" class="message-alert alert hide" role="alert"></div>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div>
+            <div class="btn-toolbar">
+                <div id="btn-template" class="btn-group btn-group-sm"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-5 justify-content-center">
+        <div>
+            <button id="btn-reset-game" type="button" class="btn btn-success btn-lg"><i class="fa fa-gamepad fa-lg"></i> Joc nou</button>
+        </div>
+    </div>
+
+
+
+
+</div>
+
+
+
