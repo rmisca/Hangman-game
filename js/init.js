@@ -224,6 +224,9 @@ function  initHangman() {
 
     }
 
+    /**
+     * function used for generating statistics users
+     */
     function generateTable() {
         // get the reference for the body
         const tableWrapper = document.getElementById("table-wrapper");
@@ -252,7 +255,7 @@ function  initHangman() {
             const row = document.createElement("tr");
 
             const statisticsForCurrentUser = showLocalStorageResults();
-            const statisticKeys = Object.keys(statisticsForCurrentUser);
+            const statisticKeys = ["gamesWon", "gamesLost"];
             for (let j = 0; j < statisticKeys.length; j++) {
                 // Create a <td> element and a text node, make the text
                 // node the contents of the <td>, and put the <td> at
